@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saray SMP | Minecraft</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--bg:#030303;--panel:#0b0b0d;--panel2:#111114;--line:#29292e;--gold:#d6aa55;--gold2:#f1cc79;--text:#f5f5f5;--muted:#9d9da5}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:linear-gradient(rgba(0,0,0,.83),rgba(0,0,0,.97)),url('https://static.planetminecraft.com/files/resource_media/screenshot/1409/2014-03-01_0949165765_lrg.jpg') center/cover fixed}
+body:after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(circle at 50% 0,rgba(214,170,85,.13),transparent 35%)}
+/* INTRO */
+#intro{position:fixed;inset:0;z-index:9999;background:#010101;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:opacity .8s,visibility .8s}
+#intro.hide{opacity:0;visibility:hidden}
+.intro-title{position:relative;z-index:10;text-align:center;opacity:0;transform:scale(.65);animation:introTitle 1s .5s forwards}
+.intro-title small{display:block;letter-spacing:7px;color:#aaa;font-size:11px;margin-bottom:12px}.intro-title h1{font-family:MedievalSharp,serif;font-size:clamp(52px,10vw,110px);letter-spacing:4px}.intro-title p{color:var(--gold2);letter-spacing:5px;margin-top:10px;font-weight:700}
+.piece{position:absolute;width:150px;height:95px;object-fit:cover;border:1px solid rgba(214,170,85,.45);opacity:0;animation:scatter 1.5s cubic-bezier(.15,.8,.2,1) forwards}
+.piece:nth-of-type(1){--x:-560px;--y:-330px;--r:-45deg}.piece:nth-of-type(2){--x:540px;--y:-290px;--r:38deg}.piece:nth-of-type(3){--x:-500px;--y:300px;--r:32deg}.piece:nth-of-type(4){--x:510px;--y:320px;--r:-40deg}.piece:nth-of-type(5){--x:-320px;--y:-440px;--r:65deg}.piece:nth-of-type(6){--x:340px;--y:430px;--r:-55deg}.piece:nth-of-type(7){--x:390px;--y:-420px;--r:55deg}.piece:nth-of-type(8){--x:-390px;--y:410px;--r:-55deg}
+@keyframes scatter{0%{opacity:0;transform:translate(-50%,-50%) scale(.1)}20%{opacity:1}65%{opacity:.9;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) rotate(var(--r)) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) rotate(0) scale(.15)}}
+@keyframes introTitle{to{opacity:1;transform:scale(1)}}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 6%;background:rgba(3,3,3,.72);backdrop-filter:blur(15px);border-bottom:1px solid rgba(255,255,255,.07)}
+.logo{font:26px MedievalSharp,serif;color:#fff;text-decoration:none;letter-spacing:2px}.logo span{color:var(--gold2)}nav ul{display:flex;gap:30px;list-style:none}nav a{color:#ddd;text-decoration:none;font-size:13px;font-weight:700;transition:.2s}nav a:hover{color:var(--gold2)}.ip{font-size:12px;border:1px solid #36363b;background:#0b0b0d;padding:9px 12px;border-radius:8px;color:#aaa}.ip b{color:var(--gold2)}
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:130px 7% 80px;position:relative}.hero-content{max-width:730px}.eyebrow{color:var(--gold2);font-size:11px;letter-spacing:5px;font-weight:800;margin-bottom:18px}.hero h2{font:clamp(58px,9vw,105px)/.9 MedievalSharp,serif;letter-spacing:2px;margin-bottom:26px}.hero h2 span{color:var(--gold2)}.hero p{color:#b3b3ba;line-height:1.8;max-width:620px}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{border:1px solid #36363c;border-radius:8px;padding:13px 18px;text-decoration:none;font-size:13px;font-weight:800;cursor:pointer;transition:.2s}.primary{background:var(--gold);color:#090909;border-color:var(--gold)}.primary:hover{background:var(--gold2);transform:translateY(-2px)}.secondary{background:#0e0e10;color:#fff}.secondary:hover{border-color:#777;transform:translateY(-2px)}
+.hero-card{position:absolute;right:6%;bottom:12%;width:min(350px,34vw);padding:9px;background:rgba(9,9,10,.8);border:1px solid #37373c;border-radius:12px;box-shadow:0 30px 90px #000;transform:rotate(2deg)}.hero-card img{display:block;width:100%;aspect-ratio:1.35;object-fit:cover;border-radius:7px}.hero-card div{padding:10px 3px 2px;color:#888;font-size:11px}
+section{padding:100px 7%}.head{max-width:700px;margin-bottom:38px}.kicker{font-size:10px;letter-spacing:4px;color:var(--gold2);font-weight:800}.head h3{font:48px MedievalSharp,serif;margin:9px 0}.head p{color:#999;line-height:1.7}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:linear-gradient(145deg,#111113,#080809);border:1px solid #27272c;border-radius:12px;padding:27px}.card .ico{font-size:25px;margin-bottom:16px}.card h4{font-size:18px;margin-bottom:9px}.card p{color:#999;font-size:13px;line-height:1.65}
+/* MARKET */
+.market{background:linear-gradient(180deg,rgba(255,255,255,.015),transparent)}.market-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.product{position:relative;background:#0a0a0c;border:1px solid #29292f;border-radius:12px;padding:24px;overflow:hidden;transition:.25s}.product:hover{transform:translateY(-5px);border-color:#615b50}.product:before{content:"";position:absolute;width:170px;height:170px;right:-90px;top:-90px;background:rgba(214,170,85,.10);filter:blur(15px);border-radius:50%}.product-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.product h4{font-size:18px}.price{color:var(--gold2);font-size:20px;font-weight:800;white-space:nowrap}.product p{color:#8e8e96;font-size:12px;line-height:1.6;margin:14px 0 20px}.buy{width:100%;border:1px solid #3a3a40;border-radius:7px;background:#121214;color:#fff;padding:11px;font-weight:800;cursor:pointer}.buy:hover{background:var(--gold);color:#050505;border-color:var(--gold)}
+/* SERVER */
+.server{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.server-box{background:#0b0b0d;border:1px solid #29292f;border-radius:12px;padding:34px}.server-box h4{font:35px MedievalSharp,serif;margin-bottom:10px}.server-box p{color:#999;line-height:1.7}.server-ip{display:inline-block;margin-top:18px;border:1px dashed #555;padding:13px 16px;border-radius:8px;color:var(--gold2);font-weight:800;cursor:pointer}.steps{display:grid;gap:10px}.step{display:flex;gap:13px;background:#0d0d10;border:1px solid #25252a;border-radius:9px;padding:16px}.num{width:29px;height:29px;flex:0 0 29px;border-radius:50%;background:#19191d;color:var(--gold2);display:grid;place-items:center;font-weight:800}.step p{font-size:12px;color:#aaa;line-height:1.6}.step b{color:#eee}
+footer{padding:35px 7%;border-top:1px solid #202025;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:#777;font-size:12px}footer strong{color:#ddd}.toast{position:fixed;right:18px;bottom:18px;z-index:500;background:#111;border:1px solid #3a3a40;border-radius:9px;padding:13px 17px;box-shadow:0 15px 45px #000;transform:translateY(120px);opacity:0;transition:.3s}.toast.show{transform:translateY(0);opacity:1}
+@media(max-width:900px){nav ul{display:none}.hero-card{display:none}.cards,.market-grid{grid-template-columns:1fr 1fr}.server{grid-template-columns:1fr}}@media(max-width:600px){.cards,.market-grid{grid-template-columns:1fr}section{padding:75px 5%}.hero{padding:120px 5% 70px}.ip{display:none}}
+</style>
+</head>
+<body>
+<div id="intro">
+  <img class="piece" src="https://static.planetminecraft.com/files/resource_media/screenshot/1409/2014-03-01_0949165765_lrg.jpg"><img class="piece" src="https://static.planetminecraft.com/files/resource_media/screenshot/1409/2014-03-01_0949165765_lrg.jpg"><img class="piece" src="https://static.planetminecraft.com/files/resource_media/screenshot/1409/2014-03-01_0949165765_lrg.jpg"><img class="piece" src="https://static.planetminecraft.com/files/resource_media/screenshot/1409/2014-03-01_0949165765_lrg.jpg"><img class="piece" src="https://static.planetminecraft.com/files/resource_media/screenshot/1409/2014-03-01_0949165765_lrg.jpg"><img class="piece" src="https://static.planetminecraft.com/files/resource_media/screenshot/1409/2014-03-01_0949165765_lrg.jpg"><img class="piece" src="https://static.planetminecraft.com/files/resource_media/screenshot/1409/2014-03-01_0949165765_lrg.jpg"><img class="piece" src="https://static.planetminecraft.com/files/resource_media/screenshot/1409/2014-03-01_0949165765_lrg.jpg">
+  <div class="intro-title"><small>MINECRAFT SUNUCUSU</small><h1>SARAY SMP</h1></div>
+</div>
+<nav><a class="logo" href="#">SARAY <span>SMP</span></a><ul><li><a href="#anasayfa">Anasayfa</a></li><li><a href="#market">Market</a></li><li><a href="#sunucu">Sunucu</a></li></ul><div class="ip">IP: <b>saraysmp.redstone.tr</b></div></nav>
+<main>
+<section class="hero" id="anasayfa"><div class="hero-content"><div class="eyebrow">MINECRAFT SURVIVAL • SARAY SMP</div><h2>SARAY<br><span>SMP</span></h2><p>Karanlık ve ortaçağ atmosferindeki Saray SMP dünyasına katıl. Kendi krallığını kur, kaynaklarını geliştir ve macerana başla.</p><div class="buttons"><a class="btn primary" href="#sunucu">SUNUCUYA KATIL</a><a class="btn secondary" href="#market">MARKETİ GÖR</a></div></div><div class="hero-card"><img src="https://static.planetminecraft.com/files/resource_media/screenshot/1409/2014-03-01_0949165765_lrg.jpg" alt="Minecraft saray"><div>Minecraft ortaçağ saray görseli</div></div></section>
+<section><div class="head"><div class="kicker">SARAY SMP</div><h3>Krallığını kur.</h3><p>Profesyonel, siyah ve Minecraft temalı bir arayüz. Gereksiz neon yerine koyu taş ve altın detaylar kullanıldı.</p></div><div class="cards"><div class="card"><div class="ico">⚔</div><h4>Macera</h4><p>Dünyayı keşfet, kaynaklarını topla ve kendi bölgeni geliştir.</p></div><div class="card"><div class="ico">♜</div><h4>Saray Teması</h4><p>Ortaçağ kaleleri ve Minecraft dünyasından ilham alan karanlık tasarım.</p></div><div class="card"><div class="ico">◆</div><h4>Özel Market</h4><p>Key ve rütbelerle sunucudaki deneyimini kişiselleştir.</p></div></div></section>
+<section class="market" id="market"><div class="head"><div class="kicker">MAĞAZA</div><h3>Saray Market</h3><p>Ürünler ve fiyatlar aşağıdaki gibidir. Satın al butonları şu an örnek bildirim gösterir; gerçek ödeme bağlantısı ayrıca eklenebilir.</p></div><div class="market-grid">
+<div class="product"><div class="product-top"><h4>Amatis Key</h4><div class="price">70 TL</div></div><p>Amatis sandığı için özel anahtar.</p><button class="buy" onclick="buy('Amatis Key')">SATIN AL</button></div>
+<div class="product"><div class="product-top"><h4>Spawner Key</h4><div class="price">60 TL</div></div><p>Spawner ödüllerine erişim sağlayan key.</p><button class="buy" onclick="buy('Spawner Key')">SATIN AL</button></div>
+<div class="product"><div class="product-top"><h4>Kızıl Key</h4><div class="price">70 TL</div></div><p>Kızıl sandığı için özel anahtar.</p><button class="buy" onclick="buy('Kızıl Key')">SATIN AL</button></div>
+<div class="product"><div class="product-top"><h4>Saray Key</h4><div class="price">50 TL</div></div><p>Saray sandığı için özel anahtar.</p><button class="buy" onclick="buy('Saray Key')">SATIN AL</button></div>
+<div class="product"><div class="product-top"><h4>Sponsor</h4><div class="price">200 TL</div></div><p>Sponsor paketine ait mağaza ürünü.</p><button class="buy" onclick="buy('Sponsor')">SATIN AL</button></div>
+<div class="product"><div class="product-top"><h4>VIP</h4><div class="price">60 TL</div></div><p>VIP rütbesi için özel paket.</p><button class="buy" onclick="buy('VIP')">SATIN AL</button></div>
+<div class="product"><div class="product-top"><h4>MVIP</h4><div class="price">70 TL</div></div><p>MVIP rütbesi için özel paket.</p><button class="buy" onclick="buy('MVIP')">SATIN AL</button></div>
+</div></section>
+<section id="sunucu"><div class="head"><div class="kicker">SUNUCU BİLGİLERİ</div><h3>Krallığa katıl.</h3></div><div class="server"><div class="server-box"><h4>Saray SMP</h4><p>Minecraft Çok Oyunculu menüsünden aşağıdaki adresi kullanarak sunucuya bağlanabilirsin.</p><div class="server-ip" onclick="copyIP()">saraysmp.redstone.tr</div><div class="buttons"><button class="btn primary" onclick="copyIP()">IP'Yİ KOPYALA</button></div></div><div class="steps"><div class="step"><div class="num">1</div><p><b>Minecraft'ı aç.</b><br>Çok Oyunculu / Multiplayer menüsüne gir.</p></div><div class="step"><div class="num">2</div><p><b>Sunucu ekle.</b><br>Adres kısmına <b>saraysmp.redstone.tr</b> yaz.</p></div><div class="step"><div class="num">3</div><p><b>Bağlan.</b><br>Sunucuyu seç ve Saray SMP'ye giriş yap.</p></div></div></div></section>
+</main><footer><div>© 2026 <strong>Saray SMP</strong></div><div>Minecraft ile bağlantılı resmi Mojang sitesi değildir.</div></footer><div class="toast" id="toast"></div>
+<script>
+const intro=document.getElementById('intro');
+function openSite(){
+  if(!intro) return;
+  intro.classList.add('hide');
+  setTimeout(()=>{ intro.style.display='none'; },900);
+}
+// Sayfa tamamen yüklenmese bile 3.6 saniye sonra site kesin olarak açılır.
+setTimeout(openSite,3600);
+window.addEventListener('load',()=>setTimeout(openSite,300));
+function show(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300)}
+function buy(item){window.location.href='https://www.tiktok.com/@sosy_jopy47?is_from_webapp=1&sender_device=pc'}function copyIP(){navigator.clipboard?.writeText('saraysmp.redstone.tr').then(()=>show('Sunucu IP adresi kopyalandı!')).catch(()=>show('IP: saraysmp.redstone.tr'))}
+</script>
+</body></html>
